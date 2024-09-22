@@ -13,7 +13,7 @@ def call_api(url):
 
 
 # Test API call
-test_url = "https://jsonplaceholder.typicode.com/todos/1"
+test_url = "https://api.github.com/events"
 test_response = call_api(test_url)
 print(test_response.status_code)
 print(test_response.text)
