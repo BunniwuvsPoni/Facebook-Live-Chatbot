@@ -1,5 +1,5 @@
 # Facebook-Live-Chatbot
 Facebook live chatbot for miners...
 
-## Reminder:
-Create "Secrets" folder
+## Setup
+Reminder to setup .env secrets file
