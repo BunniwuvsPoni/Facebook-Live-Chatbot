@@ -17,7 +17,6 @@ logging.basicConfig(level=logging.INFO)
 ngrok.set_auth_token(authtoken=my_secrets["NGROK_ACCESS_TOKEN"])
 listener = ngrok.werkzeug_develop()
 
-
 # Configure Flask
 app = flask.Flask(__name__)
 
@@ -55,4 +54,5 @@ def compute():
 
     return response, 200
 
-app.run()
+if __name__ == '__main__':
+    app.run()
