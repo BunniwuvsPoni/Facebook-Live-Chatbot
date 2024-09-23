@@ -3,7 +3,7 @@ from dotenv import dotenv_values
 # Load secrets
 my_secrets = dotenv_values(".env")
 
-# import ngrok python sdk
+# Import ngrok python sdk
 import ngrok
 import time
 
