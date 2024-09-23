@@ -14,7 +14,7 @@ import json
 logging.basicConfig(level=logging.INFO)
 
 # Configure NGROK
-ngrok.set_auth_token(authtoken=my_secrets["NGROK_ACCESS_TOKEN"])
+ngrok.set_auth_token(my_secrets["NGROK_ACCESS_TOKEN"])
 listener = ngrok.werkzeug_develop()
 
 # Configure Flask

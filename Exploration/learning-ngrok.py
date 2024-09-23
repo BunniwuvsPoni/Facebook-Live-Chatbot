@@ -7,8 +7,14 @@ my_secrets = dotenv_values(".env")
 import ngrok
 import time
 
+# Import logging
+import logging
+
+# Set logging
+logging.basicConfig(level=logging.INFO)
+
 # Establish connectivity
-listener = ngrok.forward(5000, authtoken=my_secrets["NGROK_ACCESS_TOKEN"])
+listener = ngrok.forward(5000, authtoken=my_secrets["NGROK_ACCESS_TOKEN"], domain=my_secrets["NGROK_DOMAIN"])
 
 # Output ngrok url to console
 print(f"Ingress established at {listener.url()}")
