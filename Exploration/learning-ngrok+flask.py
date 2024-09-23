@@ -1,7 +1,24 @@
+from dotenv import dotenv_values
+
+# Load secrets
+my_secrets = dotenv_values(".env")
+
+# Import NGROK + Flask modules
+import flask, logging, ngrok
+
+# Import Flask module
 from flask import Flask, request, jsonify
 import json
 
-app = Flask(__name__)
+# Set logging
+logging.basicConfig(level=logging.INFO)
+
+# Configure NGROK
+ngrok.set_auth_token(my_secrets["NGROK_ACCESS_TOKEN"])
+listener = ngrok.werkzeug_develop()
+
+# Configure Flask
+app = flask.Flask(__name__)
 
 # Hello, World!
 @app.route('/')
