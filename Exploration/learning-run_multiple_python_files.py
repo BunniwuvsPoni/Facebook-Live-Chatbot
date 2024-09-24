@@ -26,6 +26,10 @@ cmd = " && ".join(commands)
 # Run the commands
 process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
+# Live output
+for line in iter(process.stdout.readline, ''):
+    print(line)
+
 # Get the output and error (if any)
 stdout, stderr = process.communicate()
 
