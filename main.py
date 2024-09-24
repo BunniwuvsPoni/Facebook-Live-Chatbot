@@ -2,7 +2,9 @@
 
 # Main function
 def main():
-    print("Hello World!")
+    import Modules.run_facebook
+
+    Modules.run_facebook.start_facebook_application("dev")
 
 # Main execution
 if __name__ == "__main__":
