@@ -14,6 +14,7 @@ API = "https://graph.facebook.com/LATEST-API-VERSION/me/messages?access_token="+
 app = Flask(__name__)
 
 # Configure flask route
+# Facebook verification
 @app.route("/", methods=['GET'])
 def facebook_verify():
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
@@ -22,7 +23,7 @@ def facebook_verify():
         return request.args['hub.challenge'], 200
     return "Hello world", 200
 
-
+# Facebook webhook
 @app.route("/", methods=['POST'])
 def facebook_webhook():
     data = request.get_json()
