@@ -22,6 +22,27 @@ def facebook_verify():
         return request.args['hub.challenge'], 200
     return "Hello world", 200
 
+
+@app.route("/", methods=['POST'])
+def facebook_webhook():
+    data = request.get_json()
+    print(data)
+    try:
+        # Read messages from facebook messanger.
+        message = data['entry'][0]['messaging'][0]['message']
+        sender_id = data['entry'][0]['messaging'][0]['sender']['id']
+        if message['text'] == "hi":
+            request_body = {
+                "recipient": {
+                    "id": sender_id
+                },
+                "message": {
+                    "text": "hello, world!"
+                }
+            }
+            response = requests.post(API, json=request_body).json()
+            return response
+
 # Main execution
 if __name__ == '__main__':
     app.run()
