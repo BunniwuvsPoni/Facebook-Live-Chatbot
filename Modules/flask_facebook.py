@@ -8,7 +8,7 @@ FACEBOOK_PAGE_ACCESS_TOKEN = my_secrets["FACEBOOK_PAGE_ACCESS_TOKEN"]
 FACEBOOK_VERIFY_TOKEN = my_secrets["FACEBOOK_VERIFY_TOKEN"]
 
 # This is API key for Facebook messenger.
-API = "https://graph.facebook.com/LATEST-API-VERSION/me/messages?access_token="+ FACEBOOK_PAGE_ACCESS_TOKEN
+API = "https://graph.facebook.com/v20.0/me/messages?access_token="+ FACEBOOK_PAGE_ACCESS_TOKEN
 
 # Configure flask
 app = Flask(__name__)
