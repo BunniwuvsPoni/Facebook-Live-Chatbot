@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 # Configure flask route
 @app.route("/", methods=['GET'])
-def fbverify():
+def facebook_verify():
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
         if not request.args.get("hub.verify_token") == FACEBOOK_VERIFY_TOKEN:
             return "Verification token missmatch", 403
