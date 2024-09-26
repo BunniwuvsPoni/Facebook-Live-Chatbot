@@ -6,9 +6,10 @@ import json, requests
 my_secrets = dotenv_values(".env")
 FACEBOOK_PAGE_ACCESS_TOKEN = my_secrets["FACEBOOK_PAGE_ACCESS_TOKEN"]
 FACEBOOK_VERIFY_TOKEN = my_secrets["FACEBOOK_VERIFY_TOKEN"]
+FACEBOOK_API_VERSION=my_secrets["FACEBOOK_API_VERSION"]
 
 # This is API key for Facebook messenger.
-API = "https://graph.facebook.com/v20.0/me/messages?access_token="+ FACEBOOK_PAGE_ACCESS_TOKEN
+API = "https://graph.facebook.com/" + FACEBOOK_API_VERSION + "/me/messages?access_token="+ FACEBOOK_PAGE_ACCESS_TOKEN
 
 # Configure flask
 app = Flask(__name__)
@@ -37,7 +38,7 @@ def facebook_webhook():
             "id": sender_id
         },
         "message": {
-            "text": "hello, world!"
+            "text": "Hello, world! - Response from a bot..."
         }
     }
     print(request_body)
