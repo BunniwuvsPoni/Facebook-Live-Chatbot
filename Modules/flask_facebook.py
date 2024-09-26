@@ -43,6 +43,8 @@ def facebook_webhook():
             }
             response = requests.post(API, json=request_body).json()
             return response
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 # Main execution
 if __name__ == '__main__':
