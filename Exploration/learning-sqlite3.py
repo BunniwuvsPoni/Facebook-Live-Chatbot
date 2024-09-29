@@ -11,12 +11,12 @@ print(connection.total_changes)
 cursor = connection.cursor()
 
 # # Create Table
-# cursor.execute("CREATE TABLE test (id INTERGER, name TEXT)")
+# cursor.execute("CREATE TABLE test (name TEXT, date TEXT)")
 
 # # Insert values
-# cursor.execute("INSERT INTO test VALUES (1,'Apple')")
-# cursor.execute("INSERT INTO test VALUES (2,'Banana')")
-# cursor.execute("INSERT INTO test VALUES (3,'Cherry')")
+# cursor.execute("INSERT INTO test VALUES ('Apple', datetime('now'))")
+# cursor.execute("INSERT INTO test VALUES ('Banana', datetime('now'))")
+# cursor.execute("INSERT INTO test VALUES ('Cherry', datetime('now'))")
 
 # # Commit changes
 # connection.commit()
@@ -28,7 +28,7 @@ for table in tables:
     print(table[0])
 
 # Read data
-cursor.execute("SELECT * FROM test")
+cursor.execute("SELECT rowid, name, date FROM test")
 rows = cursor.fetchall()
 for row in rows:
     print(row)
