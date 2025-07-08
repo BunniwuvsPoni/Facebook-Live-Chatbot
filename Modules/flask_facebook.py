@@ -22,7 +22,7 @@ def facebook_verify():
         if not request.args.get("hub.verify_token") == FACEBOOK_VERIFY_TOKEN:
             return "Verification token missmatch", 403
         return request.args['hub.challenge'], 200
-    return "Hello world", 200
+    return "Hello, World!", 200
 
 # Facebook webhook
 @app.route("/", methods=['POST'])
