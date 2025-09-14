@@ -6,7 +6,7 @@ import json, requests
 my_secrets = dotenv_values(".env")
 FACEBOOK_PAGE_ACCESS_TOKEN = my_secrets["FACEBOOK_PAGE_ACCESS_TOKEN"]
 FACEBOOK_VERIFY_TOKEN = my_secrets["FACEBOOK_VERIFY_TOKEN"]
-FACEBOOK_API_VERSION=my_secrets["FACEBOOK_API_VERSION"]
+FACEBOOK_API_VERSION = my_secrets["FACEBOOK_API_VERSION"]
 
 # This is API key for Facebook Messenger.
 API = "https://graph.facebook.com/" + FACEBOOK_API_VERSION + "/me/messages?access_token="+ FACEBOOK_PAGE_ACCESS_TOKEN

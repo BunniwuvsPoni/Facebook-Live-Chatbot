@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)
 listener = ngrok.forward(5000, authtoken=my_secrets["NGROK_ACCESS_TOKEN"], domain=my_secrets["NGROK_DOMAIN"])
 
 # Output ngrok url to console
-print(f"Ingress established at {listener.url()}")
+print(f"Ingress established at: {listener.url()}")
 
 # Keep the listener alive
 try:
