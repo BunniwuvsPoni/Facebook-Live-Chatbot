@@ -21,13 +21,13 @@ def hello_world():
     print("Page Triggered - [GET]: Hello, World!")
     return "Hello, World!", 200
 
-# [GET] - Facebook Messenger Webhook verification
-@app.route("/facebook_messenger_webhook", methods=['GET'])
-def facebook_messenger_webhook_verification():
-    print("Page Triggered - [GET]: Facebook Messenger Webhook verification")
+# [GET] - Facebook Webhook verification
+@app.route("/facebook_webhook", methods=['GET'])
+def facebook_webhook_verification():
+    print("Page Triggered - [GET]: Facebook Webhook verification")
     print(request.args)
 
-    # Facebook Messenger Webhook verification happens here
+    # Facebook Webhook verification happens here
     # request.args.get("hub.mode") == "subscribe"
         # This checks if the hub.mode parameter in the query string is set to "subscribe", which indicates a subscription request.
             # This value will always be set to subscribe.
@@ -43,10 +43,10 @@ def facebook_messenger_webhook_verification():
         print("Returning challenge to Facebook: " + request.args['hub.challenge'])
         return request.args['hub.challenge'], 200
 
-# [POST] - Facebook Messenger Webhook
-@app.route("/facebook_messenger_webhook", methods=['POST'])
-def facebook_messenger_webhook():
-    print("Page Triggered - [POST]: Facebook Messenger Webhook")
+# [POST] - Facebook Webhook
+@app.route("/facebook_webhook", methods=['POST'])
+def facebook_webhook():
+    print("Page Triggered - [POST]: Facebook Webhook")
 
     print("Request data:")
     data = request.get_json()
