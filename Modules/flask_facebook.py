@@ -52,7 +52,7 @@ def facebook_webhook():
     data = request.get_json()
     print(data)
 
-    ### Facebook Messenger Messenging ###
+### Facebook Messenger Messenging ###
 
     try:
         # Read messages from Facebook Messenger.
@@ -112,7 +112,7 @@ def facebook_webhook():
     except Exception as e:
         print(f"An error occurred: {e}")
 
-    ### Facebook Messenger Messenging ###
+### Facebook Messenger Messenging ###
 
 # Main execution
 if __name__ == '__main__':
