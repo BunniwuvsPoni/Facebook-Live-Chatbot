@@ -103,11 +103,11 @@ def facebook_webhook():
         # Send the request
         return response
 
-    ### Facebook Messenger ###
-
     # Exception handling
     except Exception as e:
         print(f"An error occurred: {e}")
+
+    ### Facebook Messenger ###
 
 # Main execution
 if __name__ == '__main__':
