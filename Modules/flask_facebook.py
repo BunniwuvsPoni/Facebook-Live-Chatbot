@@ -19,7 +19,6 @@ app = Flask(__name__)
 @app.route("/", methods=['GET'])
 def hello_world():
     print("Page Triggered - [GET]: Hello, World!")
-
     return "Hello, World!", 200
 
 # [GET] - Facebook Webhook verification
@@ -49,7 +48,7 @@ def facebook_webhook_verification():
 def facebook_webhook():
     print("Page Triggered - [POST]: Facebook Webhook")
 
-    print("Request data: ")
+    print("Request data:")
     data = request.get_json()
     print(data)
 
@@ -64,9 +63,11 @@ def facebook_webhook():
             "text": "Hello, World! - This is a test response from the chatbot..."
         }
     }
+    print("Request body:")
     print(request_body)
     response = requests.post(API, json=request_body).json()
-    print(API)
+    print("API URL: " + API)
+    print("Response: ")
     print(response)
     return response
 
