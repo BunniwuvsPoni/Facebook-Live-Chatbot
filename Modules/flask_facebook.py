@@ -5,7 +5,7 @@ import json, requests
 # Load secrets
 my_secrets = dotenv_values(".env")
 FACEBOOK_PAGE_ACCESS_TOKEN = my_secrets["FACEBOOK_PAGE_ACCESS_TOKEN"]
-FACEBOOK_VERIFY_TOKEN = my_secrets["FACEBOOK_VERIFY_TOKEN"]
+FACEBOOK_WEBHOOK_VERIFICATION_TOKEN = my_secrets["FACEBOOK_WEBHOOK_VERIFICATION_TOKEN"]
 FACEBOOK_API_VERSION = my_secrets["FACEBOOK_API_VERSION"]
 
 # This is API key for Facebook Messenger.
@@ -37,7 +37,7 @@ def facebook_webhook_verification():
                 # This value is configured in the:
                     # 1) Webhook on Facebook in the Developer App section
                     # 2) The .env file
-        if not request.args.get("hub.verify_token") == FACEBOOK_VERIFY_TOKEN:
+        if not request.args.get("hub.verify_token") == FACEBOOK_WEBHOOK_VERIFICATION_TOKEN:
             return "Verification token missmatch", 403
         # Returns challenge value to Facebook provided that the above verification(s) matches.
         print("Returning challenge to Facebook: " + request.args['hub.challenge'])
