@@ -61,8 +61,11 @@ def facebook_messenger_webhook():
         # Get the Sender's ID to respond to
         sender_id = data['entry'][0]['messaging'][0]['sender']['id']
 
+        # Set request_body to None
+        request_body = None
+
         # Response is crafted here
-        if message['text'] == "test":
+        if message['text'].casefold() == "test":
             # Basic text response
             request_body = {
                 "recipient": {
@@ -72,7 +75,7 @@ def facebook_messenger_webhook():
                     "text": "Hello, World! - This is a test response from the chatbot..."
                 }
             }
-        elif message['text'] == "choice":
+        elif message['text'].casefold() == "choice":
             # Quick reply
             request_body = {
                 "recipient": {
