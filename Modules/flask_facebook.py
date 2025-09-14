@@ -18,14 +18,14 @@ app = Flask(__name__)
 # [GET] - Hello, World! landing page
 @app.route("/", methods=['GET'])
 def hello_world():
-    print("Page Triggered: Hello, World!")
+    print("Page Triggered - [GET]: Hello, World!")
 
     return "Hello, World!", 200
 
 # [GET] - Facebook Webhook verification
-@app.route("/facebook_webhook_verification", methods=['GET'])
+@app.route("/facebook_webhook", methods=['GET'])
 def facebook_webhook_verification():
-    print("Page Triggered: Facebook Webhook verification")
+    print("Page Triggered - [GET]: Facebook Webhook verification")
     print(request.args)
 
     # Facebook Webhook verification happens here
@@ -45,9 +45,9 @@ def facebook_webhook_verification():
         return request.args['hub.challenge'], 200
 
 # [POST] - Facebook Webhook
-@app.route("/", methods=['POST'])
+@app.route("/facebook_webhook", methods=['POST'])
 def facebook_webhook():
-    print("Page Triggered: [POST]")
+    print("Page Triggered - [POST]: Facebook Webhook")
 
     print("Request data: ")
     data = request.get_json()
