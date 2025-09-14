@@ -21,13 +21,13 @@ def hello_world():
     print("Page Triggered - [GET]: Hello, World!")
     return "Hello, World!", 200
 
-# [GET] - Facebook Webhook verification
-@app.route("/facebook_webhook", methods=['GET'])
+# [GET] - Facebook Messenger Webhook verification
+@app.route("/facebook_messenger_webhook", methods=['GET'])
 def facebook_webhook_verification():
-    print("Page Triggered - [GET]: Facebook Webhook verification")
+    print("Page Triggered - [GET]: Facebook Messenger Webhook verification")
     print(request.args)
 
-    # Facebook Webhook verification happens here
+    # Facebook Messenger Webhook verification happens here
     # request.args.get("hub.mode") == "subscribe"
         # This checks if the hub.mode parameter in the query string is set to "subscribe", which indicates a subscription request.
             # This value will always be set to subscribe.
@@ -43,16 +43,16 @@ def facebook_webhook_verification():
         print("Returning challenge to Facebook: " + request.args['hub.challenge'])
         return request.args['hub.challenge'], 200
 
-# [POST] - Facebook Webhook
-@app.route("/facebook_webhook", methods=['POST'])
+# [POST] - Facebook Messenger Webhook
+@app.route("/facebook_messenger_webhook", methods=['POST'])
 def facebook_webhook():
-    print("Page Triggered - [POST]: Facebook Webhook")
+    print("Page Triggered - [POST]: Facebook Messenger Webhook")
 
     print("Request data:")
     data = request.get_json()
     print(data)
 
-    ### Facebook Messenger ###
+    ### Facebook Messenger Messenging ###
 
     try:
         # Read messages from Facebook Messenger.
@@ -107,7 +107,7 @@ def facebook_webhook():
     except Exception as e:
         print(f"An error occurred: {e}")
 
-    ### Facebook Messenger ###
+    ### Facebook Messenger Messenging ###
 
 # Main execution
 if __name__ == '__main__':
