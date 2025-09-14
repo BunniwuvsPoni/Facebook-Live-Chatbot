@@ -62,9 +62,11 @@ def facebook_messenger_webhook():
         sender_id = data['entry'][0]['messaging'][0]['sender']['id']
 
         # Set request_body to None
+            # To address the error when request_body is never set due to not matching any of the case(s) below
         request_body = None
 
         # Response is crafted here
+            # .casefold() accounts for case insensitivity
         if message['text'].casefold() == "test":
             # Basic text response
             request_body = {
