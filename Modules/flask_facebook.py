@@ -8,25 +8,48 @@ FACEBOOK_PAGE_ACCESS_TOKEN = my_secrets["FACEBOOK_PAGE_ACCESS_TOKEN"]
 FACEBOOK_VERIFY_TOKEN = my_secrets["FACEBOOK_VERIFY_TOKEN"]
 FACEBOOK_API_VERSION=my_secrets["FACEBOOK_API_VERSION"]
 
-# This is API key for Facebook messenger.
+# This is API key for Facebook Messenger.
 API = "https://graph.facebook.com/" + FACEBOOK_API_VERSION + "/me/messages?access_token="+ FACEBOOK_PAGE_ACCESS_TOKEN
 
 # Configure flask
 app = Flask(__name__)
 
-# Configure flask route
-# Facebook verification
+# Configure flask route(s)
+# [GET] - Hello, World! landing page
 @app.route("/", methods=['GET'])
-def facebook_verify():
-    if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
-        if not request.args.get("hub.verify_token") == FACEBOOK_VERIFY_TOKEN:
-            return "Verification token missmatch", 403
-        return request.args['hub.challenge'], 200
+def hello_world():
+    print("Page Triggered: Hello, World!")
+
     return "Hello, World!", 200
 
-# Facebook webhook
+# [GET] - Facebook Webhook verification
+@app.route("/facebook_webhook_verification", methods=['GET'])
+def facebook_webhook_verification():
+    print("Page Triggered: Facebook Webhook verification")
+    print(request.args)
+
+    # Facebook Webhook verification happens here
+    # request.args.get("hub.mode") == "subscribe"
+        # This checks if the hub.mode parameter in the query string is set to "subscribe", which indicates a subscription request.
+            # This value will always be set to subscribe.
+    if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
+        # request.args.get("hub.verify_token")
+            # This checks if the hub.verify_token parameter in the query string matches.
+                # This value is configured in the:
+                    # 1) Webhook on Facebook in the Developer App section
+                    # 2) The .env file
+        if not request.args.get("hub.verify_token") == FACEBOOK_VERIFY_TOKEN:
+            return "Verification token missmatch", 403
+        # Returns challenge value to Facebook provided that the above verification(s) matches.
+        print("Returning challenge to Facebook: " + request.args['hub.challenge'])
+        return request.args['hub.challenge'], 200
+
+# [POST] - Facebook Webhook
 @app.route("/", methods=['POST'])
 def facebook_webhook():
+    print("Page Triggered: [POST]")
+
+    print("Request data: ")
     data = request.get_json()
     print(data)
 
@@ -38,7 +61,7 @@ def facebook_webhook():
             "id": sender_id
         },
         "message": {
-            "text": "Hello, world! - Response from a bot..."
+            "text": "Hello, World! - This is a test response from the chatbot..."
         }
     }
     print(request_body)
