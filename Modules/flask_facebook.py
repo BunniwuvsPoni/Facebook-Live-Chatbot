@@ -23,7 +23,7 @@ def hello_world():
 
 # [GET] - Facebook Messenger Webhook verification
 @app.route("/facebook_messenger_webhook", methods=['GET'])
-def facebook_webhook_verification():
+def facebook_messenger_webhook_verification():
     print("Page Triggered - [GET]: Facebook Messenger Webhook verification")
     print(request.args)
 
@@ -45,7 +45,7 @@ def facebook_webhook_verification():
 
 # [POST] - Facebook Messenger Webhook
 @app.route("/facebook_messenger_webhook", methods=['POST'])
-def facebook_webhook():
+def facebook_messenger_webhook():
     print("Page Triggered - [POST]: Facebook Messenger Webhook")
 
     print("Request data:")
