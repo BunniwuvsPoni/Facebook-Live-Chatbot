@@ -65,42 +65,51 @@ def facebook_webhook():
             # To address the error when request_body is never set due to not matching any of the case(s) below
         request_body = None
 
-        # Response is crafted here
+        # Facebook Messenger response is crafted here
+        # Checks if the message contains text, might be a Facebook sticker...
+        if not 'text' in message:
+            # No response when receiving stickers...
+            print("sticker_id: " + str(message['attachments'][0]['payload']['sticker_id']))
+
+            # The "Like" sticker
+            if message['attachments'][0]['payload']['sticker_id'] == 369239263222822:
+                print("You've gotten a \"Like\" Sticker!")
+        else:
             # .casefold() accounts for case insensitivity
-        if message['text'].casefold() == "test":
-            # Basic text response
-            request_body = {
-                "recipient": {
-                    "id": sender_id
-                },
-                "message": {
-                    "text": "Hello, World! - This is a test response from the chatbot..."
+            if message['text'].casefold() == "test":
+                # Basic text response
+                request_body = {
+                    "recipient": {
+                        "id": sender_id
+                    },
+                    "message": {
+                        "text": "Hello, World! - This is a test response from the chatbot..."
+                    }
                 }
-            }
-        elif message['text'].casefold() == "choice":
-            # Quick reply
-            request_body = {
-                "recipient": {
-                    "id": sender_id
-                },
-                "messaging_type": "RESPONSE",
-                "message": {
-                    "text": "Confirm your choice:",
-                    "quick_replies": [
-                        {
-                            "content_type": "text",
-                            "title": "Confirm",
-                            "payload": "<POSTBACK_PAYLOAD>",
-                            "image_url": "http://example.com/img/green.png"
-                        }, {
-                            "content_type": "text",
-                            "title": "Cancel",
-                            "payload": "<POSTBACK_PAYLOAD>",
-                            "image_url": "http://example.com/img/red.png"
-                        }
-                    ]
+            elif message['text'].casefold() == "choice":
+                # Quick reply
+                request_body = {
+                    "recipient": {
+                        "id": sender_id
+                    },
+                    "messaging_type": "RESPONSE",
+                    "message": {
+                        "text": "Confirm your choice:",
+                        "quick_replies": [
+                            {
+                                "content_type": "text",
+                                "title": "Confirm",
+                                "payload": "<POSTBACK_PAYLOAD>",
+                                "image_url": "http://example.com/img/green.png"
+                            }, {
+                                "content_type": "text",
+                                "title": "Cancel",
+                                "payload": "<POSTBACK_PAYLOAD>",
+                                "image_url": "http://example.com/img/red.png"
+                            }
+                        ]
+                    }
                 }
-            }
 
         # Generated the HTTP POST request
         response = requests.post(API, json=request_body).json()
